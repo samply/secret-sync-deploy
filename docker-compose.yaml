@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  central:
+    image: samply/secret-sync-central:latest
+    depends_on:
+      - proxy
+    environment:
+      - BEAM_URL=http://proxy:8081
+      - BEAM_ID=secret-sync-central.${PROXY_ID}
+      - BEAM_SECRET=${BEAM_SECRET}
+      - KEYCLOAK_URL=${KEYCLOAK_URL}
+      - KEYCLOAK_ID=${KEYCLOAK_ID}
+      - KEYCLOAK_SECRET=${KEYCLOAK_SECRET}
+
+  proxy:
+    image: samply/beam-proxy:develop
+    environment:
+      - APP_secret-sync-central_KEY=${BEAM_SECRET}
+      - BROKER_URL=${BROKER_URL}
+      - PROXY_ID=${PROXY_ID}
+      - RUST_LOG=info
+    secrets:
+      - privkey.pem
+      - root.crt.pem
+
+secrets:
+  privkey.pem:
+    file: ${PRIVKEYFILE}
+  root.crt.pem:
+    file: ${BROKER_ROOT_CERT}

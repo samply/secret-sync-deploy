@@ -6,15 +6,18 @@ services:
     depends_on:
       - proxy
     environment:
+      - ALL_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=proxy
       - BEAM_URL=http://proxy:8081
       - BEAM_ID=secret-sync-central.${PROXY_ID}
       - BEAM_SECRET=${BEAM_SECRET}
-      - KEYCLOAK_URL=${KEYCLOAK_URL}
+      - KEYCLOAK_URL=https://login.verbis.dkfz.de
       - KEYCLOAK_ID=${KEYCLOAK_ID}
       - KEYCLOAK_REALM=${KEYCLOAK_REALM}
       - KEYCLOAK_SECRET=${KEYCLOAK_SECRET}
       - KEYCLOAK_SERVICE_ACCOUNT_ROLES=${KEYCLOAK_SERVICE_ACCOUNT_ROLES}
       - KEYCLOAK_GROUPS_PER_BH=${KEYCLOAK_GROUPS_PER_BH}
+      - GITLAB_URL=https://git.verbis.dkfz.de
 
   proxy:
     image: samply/beam-proxy:develop

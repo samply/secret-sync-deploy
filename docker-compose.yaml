@@ -18,6 +18,7 @@ services:
       - KEYCLOAK_SERVICE_ACCOUNT_ROLES=${KEYCLOAK_SERVICE_ACCOUNT_ROLES}
       - KEYCLOAK_GROUPS_PER_BH=${KEYCLOAK_GROUPS_PER_BH}
       - GITLAB_URL=https://git.verbis.dkfz.de
+      - GITLAB_API_ACCESS_TOKEN=${GITLAB_API_ACCESS_TOKEN}
 
   proxy:
     image: samply/beam-proxy:develop

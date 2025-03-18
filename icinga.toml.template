@@ -1,0 +1,3 @@
+icinga_url = "https://monitoring.verbis.dkfz.de"
+username = "git-rotator-user"
+password = "somepass"

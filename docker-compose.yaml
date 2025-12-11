@@ -11,21 +11,10 @@ services:
       - BEAM_URL=http://proxy:8081
       - BEAM_ID=secret-sync-central.${PROXY_ID}
       - BEAM_SECRET=${BEAM_SECRET}
-      - KEYCLOAK_URL=${KEYCLOAK_URL}
-      - KEYCLOAK_ID=${KEYCLOAK_ID}
-      - KEYCLOAK_REALM=${KEYCLOAK_REALM}
-      - KEYCLOAK_SECRET=${KEYCLOAK_SECRET}
-      - KEYCLOAK_SERVICE_ACCOUNT_ROLES=${KEYCLOAK_SERVICE_ACCOUNT_ROLES}
-      - KEYCLOAK_GROUPS_PER_BH=${KEYCLOAK_GROUPS_PER_BH}
-      - verbis_GITLAB_URL=${verbis_GITLAB_URL}
-      - verbis_GITLAB_API_ACCESS_TOKEN=${verbis_GITLAB_API_ACCESS_TOKEN}
-      - verbis_GITLAB_REPO_FORMAT=${verbis_GITLAB_REPO_FORMAT}
-      - bbmri_GITLAB_URL=${bbmri_GITLAB_URL}
-      - bbmri_GITLAB_API_ACCESS_TOKEN=${bbmri_GITLAB_API_ACCESS_TOKEN}
-      - bbmri_GITLAB_REPO_FORMAT=${bbmri_GITLAB_REPO_FORMAT}
       - ICINGA_CONFIG_PATH=/icinga.toml
     volumes:
       - ./icinga.toml:/icinga.toml
+    env_file: .env
 
   proxy:
     image: samply/beam-proxy:develop
